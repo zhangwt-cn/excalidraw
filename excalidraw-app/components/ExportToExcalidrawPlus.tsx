@@ -36,10 +36,12 @@ export const exportToExcalidrawPlus = async (
 
   const id = `${nanoid(12)}`;
 
+  const data = serializeAsJSON(elements, appState, files, "database")
+  console.log(data)
   const encryptionKey = (await generateEncryptionKey())!;
   const encryptedData = await encryptData(
     encryptionKey,
-    serializeAsJSON(elements, appState, files, "database"),
+    data,
   );
 
   const blob = new Blob(
